@@ -17,7 +17,7 @@ func commandMapf(cfg *config) error {
 	fmt.Print(*locationResp.Next)
 
 	cfg.nextLocationsURL = locationResp.Next
-	cfg.nextLocationsURL = locationResp.Previous
+	cfg.previousLocationsURL = locationResp.Previous
 
 	for _, location := range locationResp.Results {
 		fmt.Println(location.Name)
