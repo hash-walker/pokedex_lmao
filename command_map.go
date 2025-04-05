@@ -6,11 +6,15 @@ import (
 )
 
 func commandMapf(cfg *config) error {
+
+	fmt.Printf("hello, %v\n", cfg.nextLocationsURL)
 	locationResp, err := cfg.pokeapiClient.ListLocations(cfg.nextLocationsURL)
 
 	if err != nil {
 		return err
 	}
+
+	fmt.Print(*locationResp.Next)
 
 	cfg.nextLocationsURL = locationResp.Next
 	cfg.nextLocationsURL = locationResp.Previous
@@ -28,7 +32,7 @@ func commandMapb(cfg *config) error {
 		return errors.New("you're on the first page")
 	}
 
-	locationResp, err := cfg.pokeapiClient.ListLocations(cfg.nextLocationsURL)
+	locationResp, err := cfg.pokeapiClient.ListLocations(cfg.previousLocationsURL)
 
 	if err != nil {
 		return err

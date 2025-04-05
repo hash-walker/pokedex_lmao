@@ -19,6 +19,9 @@ func startRepl(cfg *config) {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for {
+
+		fmt.Printf("DEBUG BEFORE: nextURL=%v, ptr=%p\n", cfg.nextLocationsURL, cfg)
+
 		fmt.Print("Pokedex > ")
 
 		if !scanner.Scan() {
@@ -49,6 +52,8 @@ func startRepl(cfg *config) {
 
 		}
 
+		 fmt.Printf("DEBUG AFTER: nextURL=%v, ptr=%p\n", cfg.nextLocationsURL, cfg)
+
 	}
 }
 
@@ -70,7 +75,7 @@ func getCommands() map[string]cliCommand {
 			callback:    commandMapf,
 		},
 		"mapb": {
-			name:        "map",
+			name:        "mapb",
 			description: "Get the previous page of locations",
 			callback:    commandMapb,
 		},

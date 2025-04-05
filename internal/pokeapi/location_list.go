@@ -2,6 +2,7 @@ package pokeapi
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 )
@@ -40,6 +41,7 @@ func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
 	if err != nil {
 		return RespShallowLocations{}, err
 	}
-
+	
+	fmt.Printf("count: %d, next: %v, previous: %v \n", locationsResp.Count, *locationsResp.Next, *&locationsResp.Previous)
 	return locationsResp, nil
 }
