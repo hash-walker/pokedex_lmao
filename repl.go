@@ -20,8 +20,6 @@ func startRepl(cfg *config) {
 
 	for {
 
-		fmt.Printf("DEBUG BEFORE: nextURL=%v, ptr=%p\n", cfg.nextLocationsURL, cfg)
-
 		fmt.Print("Pokedex > ")
 
 		if !scanner.Scan() {
@@ -51,8 +49,6 @@ func startRepl(cfg *config) {
 			}
 
 		}
-
-		 fmt.Printf("DEBUG AFTER: nextURL=%v, ptr=%p\n", cfg.nextLocationsURL, cfg)
 
 	}
 }

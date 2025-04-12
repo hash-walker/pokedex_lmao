@@ -7,14 +7,11 @@ import (
 
 func commandMapf(cfg *config) error {
 
-	fmt.Printf("hello, %v\n", cfg.nextLocationsURL)
 	locationResp, err := cfg.pokeapiClient.ListLocations(cfg.nextLocationsURL)
 
 	if err != nil {
 		return err
 	}
-
-	fmt.Print(*locationResp.Next)
 
 	cfg.nextLocationsURL = locationResp.Next
 	cfg.previousLocationsURL = locationResp.Previous
