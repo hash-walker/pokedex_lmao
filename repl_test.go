@@ -39,6 +39,6 @@ func TestCleanInput(t *testing.T) {
 			if word != expectedWord {
 				t.Errorf("cleanInput(%v) == %v, expected %v", c.input, actual, c.expected)
 			}
-		}
+		}	
 	}
 }

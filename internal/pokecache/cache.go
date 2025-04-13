@@ -13,8 +13,11 @@ type Cache struct {
 func NewCache(interval time.Duration) Cache {
 	c := Cache{
 		cache: make(map[string]cacheEntry),
-		mu: &sync.Mutex{},
+		mu:    &sync.Mutex{},
 	}
+
+	// Start the reap loop in a separate goroutine
+	go c.reapLoop(interval)
 
 	return c
 }
@@ -40,10 +43,10 @@ func (c *Cache) Get (key string) ([]byte, bool){
 }
 
 func (c *Cache) reapLoop(interval time.Duration) {
-
 	ticker := time.NewTicker(interval)
+	defer ticker.Stop() // Ensure the ticker is stopped when the function exits
 
-	for range ticker.C{
+	for range ticker.C {
 		c.reap(time.Now().UTC(), interval)
 	}
 }
