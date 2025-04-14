@@ -7,7 +7,7 @@ import (
 
 func exploreArea(cfg *config, arguments ...string) error{
 
-	if len(arguments) >= 1 {
+	if len(arguments) != 1 {
 		return errors.New("you must provide a location name")
 	}
 
